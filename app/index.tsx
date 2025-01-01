@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
+    <View className="flex-1 items-center justify-center bg-white">
       <Text>Home</Text>
       <Link href="/details">View details</Link>
       <Link href="/profile">View Profiles</Link>
