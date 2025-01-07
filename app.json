@@ -7,6 +7,9 @@
       "output": "static",
       "bundler": "metro"
     },
+    "android": {
+      "package": "com.zyk.aira"
+    },
     "plugins": [
       [
         "expo-router",
