@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { Redirect, router } from "expo-router";
-import { View, Text, ScrollView } from "react-native";
-import { Image } from "expo-image";
+import { View, Text, ScrollView, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { images } from "../constants";
@@ -15,7 +14,7 @@ const Welcome = () => {
           <Image
             source={images.logo}
             className="w-[130px] h-[84px]"
-            contentFit="contain"
+            resizeMode="contain"
           />
 
           <Image
@@ -25,7 +24,7 @@ const Welcome = () => {
               width: "100%",
               height: 300,
             }}
-            contentFit="contain"
+            resizeMode="contain"
           />
 
           <View className="relative mt-5">
@@ -36,12 +35,8 @@ const Welcome = () => {
 
             <Image
               source={images.path}
-              style={{
-                width: 136,
-                height: 15,
-              }}
-              className="absolute -bottom-2 -right-7"
-              contentFit="contain"
+              className="w-[136px] h-[15px] absolute -bottom-2 right-8"
+              resizeMode="contain"
             />
           </View>
 
