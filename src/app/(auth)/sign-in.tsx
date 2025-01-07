@@ -43,7 +43,7 @@ const SignIn = () => {
 
           <FormFields
             title="Password"
-            value={form.email}
+            value={form.password}
             placeholder="Enter Password"
             handleChangeText={(e) => setForm({ ...form, password: e })}
             otherStyles="mt-7"
