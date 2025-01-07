@@ -21,7 +21,7 @@ const Welcome = () => {
           <Image
             source={images.cards}
             style={{
-              maxWidth: 380,
+              minWidth: 380,
               width: "100%",
               height: 300,
             }}
