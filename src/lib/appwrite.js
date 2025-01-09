@@ -48,9 +48,9 @@ export const createUser = async (email, password, username) => {
       ID.unique(),
       {
         accountId: newAccount.$id,
-        email,
-        password,
-        username,
+        email: String,
+        password: String,
+        username: String,
         avatar: avatarUrl,
       }
     );
@@ -60,6 +60,21 @@ export const createUser = async (email, password, username) => {
     throw new Error(error);
   }
 };
+
+const retryWithBackoff = async (fn, retries = 3, delay = 1000) => {
+  try {
+    return await fn();
+  } catch (error) {
+    if (retries > 0 && error.message.includes("limit endpoint exceeded")) {
+      console.log(`Retrying... (${retries} left)`);
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      return retryWithBackoff(fn, retries - 1, delay * 2);
+    }
+    throw error;
+  }
+};
+
+await retryWithBackoff(() => createUser(email, password, username));
 
 export async function signIn(email, password) {
   try {
