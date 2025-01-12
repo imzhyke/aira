@@ -31,50 +31,49 @@ const storage = new Storage(client);
 const avatars = new Avatars(client);
 const databases = new Databases(client);
 
-export const createUser = async (email, password, username) => {
+// Register user
+export async function createUser(email:string, password:string, username:string) {
   try {
-    const newAccount = await account.create(
-      ID.unique(),
-      email,
-      password,
-      username
-    );
+    const newAccount = await account.create(ID.unique(), email, password, username);
+
     if (!newAccount) throw Error;
+
     const avatarUrl = avatars.getInitials(username);
+
     await signIn(email, password);
+
     const newUser = await databases.createDocument(
       config.databaseId,
       config.userCollectionId,
       ID.unique(),
       {
         accountId: newAccount.$id,
-        email: String,
-        password: String,
-        username: String,
+        email: email,
+        username: username,
         avatar: avatarUrl,
       }
     );
+
     return newUser;
   } catch (error) {
-    console.log(error);
     throw new Error(error);
   }
-};
+}
 
-const retryWithBackoff = async (fn, retries = 3, delay = 1000) => {
-  try {
-    return await fn();
-  } catch (error) {
-    if (retries > 0 && error.message.includes("limit endpoint exceeded")) {
-      console.log(`Retrying... (${retries} left)`);
-      await new Promise((resolve) => setTimeout(resolve, delay));
-      return retryWithBackoff(fn, retries - 1, delay * 2);
-    }
-    throw error;
-  }
-};
+// const retryWithBackoff = async (fn, retries = 3, delay = 1000) => {
+//   try {
+//     return await fn();
+//   } catch (error) {
+//     if (retries > 0 && error.message.includes("limit endpoint exceeded")) {
+//       console.log(`Retrying... (${retries} left)`);
+//       await new Promise((resolve) => setTimeout(resolve, delay));
+//       return retryWithBackoff(fn, retries - 1, delay * 2);
+//     }
+//     throw error;
+//   };
+// };
 
-await retryWithBackoff(() => createUser(email, password, username));
+// await retryWithBackoff(() => createUser(email, password, username));
 
 export async function signIn(email, password) {
   try {

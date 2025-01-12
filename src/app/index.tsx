@@ -28,7 +28,7 @@ const Welcome = () => {
           />
 
           <View className="relative mt-5">
-            <Text className="text-3xl text-white  text-center font-pbold">
+            <Text className="text-4xl text-white  text-center font-pbold">
               Discover a World Without Limits with{" "}
               <Text className="text-secondary-200"> AiRa </Text>
             </Text>
@@ -40,7 +40,7 @@ const Welcome = () => {
             />
           </View>
 
-          <Text className="font-pregular text-sm text-gray-100 mt-7 text-center">
+          <Text className="font-pregular text-lg text-gray-100 mt-7 text-center">
             Embark on Boundless Adventures: Creativity and Innovation Together
             with AiRa
           </Text>

@@ -9,21 +9,21 @@ import { Link, router } from "expo-router";
 import { createUser } from "../../lib/appwrite";
 
 const SignUp = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [form, setForm] = useState<{
-    userName: string;
+    username: string;
     email: string;
     password: string;
   }>({
-    userName: "",
+    username: "",
     email: "",
     password: "",
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const submit = async () => {
-    if (!form.userName || !form.email || !form.password) {
-      Alert.alert("Error", "Please fill in all the fields");
+    if (form.username === "" || form.email === "" || form.password === "") {
+      Alert.alert("Error", "Please fill in all fields");
       return;
     }
 
@@ -33,15 +33,18 @@ const SignUp = () => {
       return;
     }
 
+    // Assign the trimmed email back to the form state
+    setForm((prevForm) => ({ ...prevForm, email: trimmedEmail }));
+
     setIsSubmitting(true);
 
     try {
-      const result = await createUser(form.userName, form.email, form.password);
+      const result = await createUser(form.email, form.password, form.username);
       //set to global state...
       router.replace("/home");
     } catch (error) {
       Alert.alert("Error", error.message);
-      console.log(form.userName, form.email, form.password);
+      console.log(form.username, form.email, form.password);
     } finally {
       setIsSubmitting(false);
     }
@@ -62,9 +65,9 @@ const SignUp = () => {
           </Text>
           <FormFields
             title="Username"
-            value={form.userName}
+            value={form.username}
             placeholder="Enter Username"
-            handleChangeText={(e) => setForm({ ...form, userName: e })}
+            handleChangeText={(e) => setForm({ ...form, username: e })}
             otherStyles="mt-7"
             keyboardType="default"
           />
