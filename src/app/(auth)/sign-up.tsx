@@ -5,11 +5,14 @@ import { images } from "../../constants";
 
 import FormFields from "@/components/FormFields";
 import CustomButton from "@/components/CustomButton";
-import { Link, router } from "expo-router";
+import { Link, router, useRouter } from "expo-router";
 import { createUser } from "../../lib/appwrite";
+import { useGlobalContext } from "../../context/GlobalProvider";
 
 const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
+  const { setUser, setIsLogged } = useGlobalContext();
 
   const [form, setForm] = useState<{
     username: string;
@@ -24,23 +27,15 @@ const SignUp = () => {
   const submit = async () => {
     if (form.username === "" || form.email === "" || form.password === "") {
       Alert.alert("Error", "Please fill in all fields");
-      return;
     }
-
-    const trimmedEmail = form.email.trim();
-    if (!/\S+@\S+\.\S+/.test(trimmedEmail)) {
-      Alert.alert("Error", "Invalid email format");
-      return;
-    }
-
-    // Assign the trimmed email back to the form state
-    setForm((prevForm) => ({ ...prevForm, email: trimmedEmail }));
 
     setIsSubmitting(true);
 
     try {
       const result = await createUser(form.email, form.password, form.username);
-      //set to global state...
+      setUser(result);
+      setIsLogged(true);
+
       router.replace("/home");
     } catch (error) {
       Alert.alert("Error", error.message);
