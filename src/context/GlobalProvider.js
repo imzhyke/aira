@@ -14,11 +14,10 @@ const GlobalProvider = ({ children }) => {
     getCurrentUser()
       .then((res) => {
         if (res) {
-          console.log(" if isLoggedL", isLogged);
           setIsLogged(true);
           setUser(res);
+          console.log(" if isLoggedL", isLogged);
         } else {
-          console.log(" else isLoggedL", isLogged);
           signOut();
           setIsLogged(false);
           setUser(null);
