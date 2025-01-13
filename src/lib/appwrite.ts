@@ -129,3 +129,33 @@ export async function signOut() {
     throw new Error(error);
   }
 }
+
+//Get All post
+export async function getAllPosts() {
+  try {
+    const posts = await databases.listDocuments(
+      config.databaseId,
+      config.videoCollectionId
+    );
+
+    return posts.documents;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+
+// Get latest created video posts
+export async function getLatestPosts() {
+  try {
+    const posts = await databases.listDocuments(
+      config.databaseId,
+      config.videoCollectionId,
+      [Query.orderDesc("$createdAt"), Query.limit(5)]
+    );
+
+    return posts.documents;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
