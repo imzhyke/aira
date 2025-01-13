@@ -4,6 +4,7 @@ import { Stack, SplashScreen } from "expo-router";
 import { useFonts } from "expo-font";
 
 import GlobalProvider from "../context/GlobalProvider";
+import { AlertNotificationRoot } from "react-native-alert-notification";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -39,12 +40,17 @@ export default function Layout() {
 
   return (
     <GlobalProvider>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="search/[query]" options={{ headerShown: false }} />
-      </Stack>
+      <AlertNotificationRoot>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="search/[query]"
+            options={{ headerShown: false }}
+          />
+        </Stack>
+      </AlertNotificationRoot>
     </GlobalProvider>
   );
 }

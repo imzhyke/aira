@@ -8,6 +8,7 @@ import CustomButton from "@/components/CustomButton";
 import { Link, router, useRouter } from "expo-router";
 import { getCurrentUser, signIn } from "@/lib/appwrite";
 import { useGlobalContext } from "../../context/GlobalProvider";
+import { ALERT_TYPE, Toast } from "react-native-alert-notification";
 
 const SignIn = () => {
   const [form, setForm] = useState<{ email: string; password: string }>({
@@ -21,7 +22,12 @@ const SignIn = () => {
 
   const submit = async () => {
     if (form.email === "" || form.password === "") {
-      Alert.alert("Error", "Please fill in all fields");
+      Toast.show({
+        type: ALERT_TYPE.WARNING,
+        title: "Missing Fields",
+        textBody: "Please fill in all required fields.",
+      });
+
       return;
     }
 
@@ -41,8 +47,18 @@ const SignIn = () => {
       const result = await getCurrentUser();
       setUser(result);
       setIsLogged(true);
+      Toast.show({
+        type: ALERT_TYPE.SUCCESS,
+        title: "Success",
+        textBody: "Logged in successfully!",
+      });
       router.replace("/home");
     } catch (error) {
+      Toast.show({
+        type: ALERT_TYPE.DANGER,
+        title: "Error Occurred",
+        textBody: error.message,
+      });
       Alert.alert("Error", error.message);
       console.log(form.email, form.password);
     } finally {

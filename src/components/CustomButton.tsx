@@ -4,9 +4,15 @@ import React from "react";
 const CustomButton = ({
   title,
   handlePress,
-  containerStyles,
-  textStyles,
-  isLoading,
+  containerStyles = "", // Default empty string if not provided
+  textStyles = "", // Default empty string if not provided
+  isLoading = false, // Default false if not provided
+}: {
+  title: string;
+  handlePress: () => void;
+  containerStyles?: string;
+  textStyles?: string;
+  isLoading?: boolean;
 }) => {
   return (
     <TouchableOpacity
