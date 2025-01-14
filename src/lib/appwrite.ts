@@ -159,3 +159,21 @@ export async function getLatestPosts() {
     throw new Error(error);
   }
 }
+
+
+// Get video posts that matches search query
+export async function searchPosts(query) {
+  try {
+    const posts = await databases.listDocuments(
+      config.databaseId,
+      config.videoCollectionId,
+      [Query.search("title", query)]
+    );
+
+    if (!posts) throw new Error("Something went wrong");
+
+    return posts.documents;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
