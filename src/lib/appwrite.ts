@@ -177,3 +177,18 @@ export async function searchPosts(query) {
     throw new Error(error);
   }
 }
+
+// Get video posts created by user
+export async function getUserPosts(userId) {
+  try {
+    const posts = await databases.listDocuments(
+      config.databaseId,
+      config.videoCollectionId,
+      [Query.equal("creator", userId)]
+    );
+
+    return posts.documents;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
