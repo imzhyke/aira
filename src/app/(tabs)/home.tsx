@@ -62,8 +62,7 @@ const Home = () => {
                 />
               </View>
             </View>
-
-            <SearchInput initialQuery={null} />
+            <SearchInput initialQuery={undefined} refetch={undefined} />
           </View>
         )}
         ListEmptyComponent={() => (
