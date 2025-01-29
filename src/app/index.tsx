@@ -8,6 +8,7 @@ import CustomButton from "@/components/CustomButton";
 import { useGlobalContext } from "../context/GlobalProvider";
 import { signOut } from "../lib/appwrite";
 import { AlertNotificationRoot } from "react-native-alert-notification";
+import { ActivityIndicator } from "react-native";
 
 const Welcome = () => {
   const { loading, isLogged } = useGlobalContext();
