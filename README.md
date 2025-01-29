@@ -6,7 +6,7 @@
 
 ## 👋 Introduction
 
-<p>AiRa is a modern mobile application built with Expo Router, powered by a solid backend infrastructure provided by Appwrite, and styled using NativeWind (Tailwind CSS for React Native). With TypeScript for enhanced type safety, this app offers an engaging and visually appealing experience, allowing users to share AI-generated videos seamlessly within the community. </p>
+**AiRa** is a modern mobile application built with **Expo Router**, powered by a solid backend infrastructure provided by **Appwrite**, and styled using **NativeWind** *(Tailwind CSS for React Native)*. With **TypeScript** for enhanced type safety, this app offers an engaging and visually appealing experience, allowing users to share AI-generated videos seamlessly within the community.
 
 <p>Inspired by <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery's</b></a> tutorial on YouTube and his accompanying <a href="https://github.com/adrianhajdin/aora/" target="_blank"><b>GitHub repository</b></a>, this project has been adapted using TypeScript instead of JavaScript for better type safety and to showcase modern development practices.</p>
 
