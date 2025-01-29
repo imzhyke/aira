@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text, ActivityIndicator } from "react-native";
+import { TouchableOpacity, Text, ActivityIndicator, View } from "react-native";
 import React from "react";
 
 const CustomButton = ({
@@ -18,9 +18,7 @@ const CustomButton = ({
     <TouchableOpacity
       onPress={handlePress}
       activeOpacity={0.7}
-      className={`bg-secondary-200 rounded-xl min-h-[62px] justify-center items-center
-       ${containerStyles}
-       ${isLoading ? "opacity-50" : ""} }`}
+      className={`bg-secondary-200 rounded-xl min-h-[62px] justify-center items-center relative ${containerStyles}`}
       disabled={isLoading}
     >
       <Text className={`text-primary font-psemibold text-xl ${textStyles}`}>
@@ -32,7 +30,7 @@ const CustomButton = ({
           animating={isLoading}
           color="#fff"
           size="small"
-          className="ml-2"
+          className="absolute inset-0" // Absolute positioning to overlap the text
         />
       )}
     </TouchableOpacity>

@@ -12,7 +12,7 @@ import eyeHide from "../assets/icons/eye-hide.png";
 import eye from "../assets/icons/eye.png";
 import play from "../assets/icons/play.png";
 import heart from "../assets/icons/heart.png";
-import heartfilled from "../assets/icons//heartfilled.png";
+
 
 export default {
   play,
@@ -29,5 +29,4 @@ export default {
   eyeHide,
   eye,
   heart,
-  heartfilled,
 };

@@ -77,31 +77,6 @@ const VideoCard = ({ title, creator, avatar, thumbnail, video }) => {
           />
         </TouchableOpacity>
       )}
-      |
-      <View className="flex flex-row w-full mt-[10px] align-center">
-        if(heart)
-        {
-          <TouchableOpacity className="flex flex-row">
-            <Image
-              source={icons.heart}
-              className="w-5 h-5 mx-2"
-              resizeMode="contain"
-            />
-            <Text className="text-white font-pmedium">Like</Text>
-          </TouchableOpacity>
-        }
-        else
-        {
-          <TouchableOpacity className="flex flex-row">
-            <Image
-              source={icons.heartfilled}
-              className="w-5 h-5 mx-2"
-              resizeMode="contain"
-            />
-            <Text className="text-white font-pmedium">Like</Text>
-          </TouchableOpacity>
-        }
-      </View>
     </View>
   );
 };

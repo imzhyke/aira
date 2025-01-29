@@ -33,7 +33,12 @@ const SignIn = () => {
 
     const trimmedEmail = form.email.trim();
     if (!/\S+@\S+\.\S+/.test(trimmedEmail)) {
-      Alert.alert("Error", "Invalid email format");
+      Toast.show({
+        type: ALERT_TYPE.WARNING,
+        title: "Wrong Format",
+        textBody: "Invalid email format.",
+      });
+
       return;
     }
 
@@ -54,13 +59,39 @@ const SignIn = () => {
       });
       router.replace("/home");
     } catch (error) {
-      Toast.show({
-        type: ALERT_TYPE.DANGER,
-        title: "Error Occurred",
-        textBody: error.message,
-      });
-      Alert.alert("Error", error.message);
-      console.log(form.email, form.password);
+      if (
+        error instanceof Error &&
+        error.message.includes("AppwriteException: Invalid credentials.")
+      ) {
+        Toast.show({
+          type: ALERT_TYPE.DANGER,
+          title: "Invalid Credentials",
+          textBody: "Please your check email and password",
+        });
+      } else if (
+        error instanceof Error &&
+        error.message.includes(
+          "Password must be between 8 and 256 characters long."
+        )
+      ) {
+        Toast.show({
+          type: ALERT_TYPE.DANGER,
+          title: "Invalid Credentials",
+          textBody: "Please your check password",
+        });
+      } else if (
+        error instanceof Error &&
+        error.message.includes(
+          "Rate limit for the current endpoint has been exceeded"
+        )
+      ) {
+        Toast.show({
+          type: ALERT_TYPE.DANGER,
+          title: "Rate Limit Exceeded",
+          textBody: "Please try again after some time.",
+        });
+      }
+      console.log(error);
     } finally {
       setIsSubmitting(false);
     }
