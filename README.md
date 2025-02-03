@@ -39,8 +39,6 @@ expo-video
 
 - Video playback using expo-video
 
-- Smooth animations with Animatable
-
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
 - React Native
@@ -48,8 +46,6 @@ expo-video
 - Expo Router
   
 - Nativewind
-  
-- Animatable
   
 - Appwrite
 
