@@ -1,3 +1,5 @@
+[![Mobile-App-Development-1.png](https://i.postimg.cc/DZBNbRfG/Mobile-App-Development-1.png)](https://postimg.cc/Vr0gxGCs)
+
 <h1 align="center"> AiRa - Video Sharing App</h1>
 
 <div align="center">
